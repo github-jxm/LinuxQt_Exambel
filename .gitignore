@@ -1,0 +1,16 @@
+*.o
+*.user
+.*.swp
+*.db
+.idea/
+.idea
+
+*.exe
+
+*Makefile
+Makefile
+*Makefile.Release
+Makefile.Release
+*Thumbs.db
+Thumbs.db
+
