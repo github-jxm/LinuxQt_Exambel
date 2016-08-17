@@ -4,6 +4,7 @@
 *.db
 .idea/
 .idea
+*.pyc
 
 *.exe
 
