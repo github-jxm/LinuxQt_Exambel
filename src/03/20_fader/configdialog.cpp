@@ -56,7 +56,7 @@ ConfigDialog::ConfigDialog()
 void ConfigDialog::changePage(QListWidgetItem *current, QListWidgetItem *previous)
 {
     if (!current)
-        current = previous;
+            current = previous;
 
     pagesWidget->setCurrentIndex(contentsWidget->row(current));
 }
@@ -64,7 +64,7 @@ void ConfigDialog::changePage(QListWidgetItem *current, QListWidgetItem *previou
 void ConfigDialog::fadeInWidget(int index)
     {
         if (faderWidget)
-            faderWidget->close();
+                faderWidget->close();
         faderWidget = new FaderWidget(
                                   pagesWidget->widget(index));
         faderWidget->start();

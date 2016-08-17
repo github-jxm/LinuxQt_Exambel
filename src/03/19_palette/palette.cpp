@@ -69,11 +69,11 @@ void Palette::createCtrlFrame()
 
 void Palette::createContentFrame()
 {
-    QLabel *label1 = new QLabel(tr("Please Select Value"));
+    QLabel *label1 = new QLabel(tr("Please Select Value"));  // 请选择一个值
     QSpinBox *spinBox =  new QSpinBox;
     spinBox->setRange(1,10);
     
-    QLabel *label2 = new QLabel(tr("Please Input String:"));
+    QLabel *label2 = new QLabel(tr("Please Input String:"));  // 请输入字符串
     QLineEdit *lineEdit = new QLineEdit;
     
     QTextEdit *edit = new QTextEdit;
@@ -111,11 +111,11 @@ void Palette::fillColorList(QComboBox * combobox)
     QString color;
     foreach(color,colorList)
     {
-	QPixmap pix(QSize(70,20));
-    	pix.fill(QColor(color));
-    	combobox->addItem(QIcon(pix),NULL);
-    	combobox->setIconSize(QSize(70,20));
-    	combobox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
+            QPixmap pix(QSize(70,20));
+            pix.fill(QColor(color));
+            combobox->addItem(QIcon(pix),NULL);
+            combobox->setIconSize(QSize(70,20));
+            combobox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
     }
 }
 

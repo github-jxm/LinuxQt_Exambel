@@ -26,29 +26,24 @@ void DigiClock::showTime()
 {
      QTime time = QTime::currentTime();
      QString text = time.toString("hh:mm");
-     if(showColon)
-     {
-     	text[2] = ':';
-     	showColon = false;
-     }
-     else
-     {
-     	text[2] = ' ';
-     	showColon = true;     	
+     if(showColon) {
+            text[2] = ':';
+            showColon = false;
+     } else {
+            text[2] = ' ';
+            showColon = true;
      }
      display(text);
 }
  
 void DigiClock::mousePressEvent(QMouseEvent * e)
 {
-    if (e->button() == Qt::LeftButton)
-    {
-    	dragPosition = e->globalPos() - frameGeometry().topLeft();
-    	e->accept();
+    if (e->button() == Qt::LeftButton) {
+            dragPosition = e->globalPos() - frameGeometry().topLeft();
+            e->accept();
     }
-    if (e->button() == Qt::RightButton)
-    {
-    	close();
+    if (e->button() == Qt::RightButton) {
+            close();
     }    
 }
 
@@ -56,8 +51,8 @@ void DigiClock::mouseMoveEvent(QMouseEvent * e)
 {
     if (e->buttons() & Qt::LeftButton)
     {
-    	move(e->globalPos() - dragPosition);
-    	e->accept();
+            move(e->globalPos() - dragPosition);
+            e->accept();
     }
 }
 
