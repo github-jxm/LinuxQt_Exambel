@@ -5,9 +5,9 @@ FaderWidget::FaderWidget(QWidget *parent)
         : QWidget(parent)
 {
     if (parent)
-        startColor = parent->palette().window().color();
+            startColor = parent->palette().window().color();
     else
-        startColor = Qt::white;
+            startColor = Qt::white;
     
     currentAlpha = 0;
     duration = 1000;
@@ -37,7 +37,7 @@ void FaderWidget::paintEvent(QPaintEvent * /* event */)
     currentAlpha -= 255 * timer->interval() / duration;
     if (currentAlpha <= 0) 
     {
-        timer->stop();
-        close();
+            timer->stop();
+            close();
     }
 }

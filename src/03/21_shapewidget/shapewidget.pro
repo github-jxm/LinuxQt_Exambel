@@ -9,5 +9,5 @@ INCLUDEPATH += .
 
 # Input
 HEADERS += shapewidget.h
-SOURCES += main.cpp qrc_test.cpp shapewidget.cpp
+SOURCES += main.cpp  shapewidget.cpp
 RESOURCES += shapewidget.qrc
