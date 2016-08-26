@@ -121,7 +121,8 @@ void FileInformation::slotFile()
         "/",
         "files (*)");            
                                     
-    LineEditFileName->setText( s.toAscii() );  	
+    LineEditFileName->setText( s.toAscii() );
+    qDebug ()  << "filePath :" << s ;
 }
 
 void FileInformation::slotGet()
