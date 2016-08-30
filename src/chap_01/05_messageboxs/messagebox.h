@@ -5,7 +5,7 @@
 
 class QLabel;
 
-class MssageBox : public QDialog
+class  MessageBox: public QDialog
 {
     Q_OBJECT
 public:
