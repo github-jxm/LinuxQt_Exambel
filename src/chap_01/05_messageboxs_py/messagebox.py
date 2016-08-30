@@ -4,6 +4,7 @@
 from PyQt4.QtCore import SIGNAL
 from PyQt4.QtGui import QDialog, QLabel, QGridLayout, QVBoxLayout, QMessageBox, QPixmap, QPushButton
 
+import messagebox_qrc
 
 class  MessageBox(QDialog):
     def __init__(self,parent=None):
