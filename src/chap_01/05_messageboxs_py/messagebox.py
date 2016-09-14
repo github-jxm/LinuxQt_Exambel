@@ -50,6 +50,8 @@ class  MessageBox(QDialog):
 
     def __slotQuestion(self):
 
+        # ret = QMessageBox.question(None,"Question",self.tr("It's end of document,search from begin?") ,
+        #                            QMessageBox.Ok|QMessageBox.Cancel,QMessageBox.Ok )
         ret = QMessageBox.question(self,"Question",self.tr("It's end of document,search from begin?") ,
                                      QMessageBox.Ok|QMessageBox.Cancel,QMessageBox.Ok )
         if ret == QMessageBox.Ok:
