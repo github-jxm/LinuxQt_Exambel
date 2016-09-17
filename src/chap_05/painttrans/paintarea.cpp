@@ -42,7 +42,7 @@ void PaintArea::paintEvent(QPaintEvent *)
     QPainterPath path;
     path.addRect(-100,-50,200,100);
             
-    p.translate(200,200);	//  °Ñ´°ÌåµÄ×ø±êÔ­µãÒÆµ½ÖĞĞÄµã
+    p.translate(200,200);	//  æŠŠçª—ä½“çš„åæ ‡åŸç‚¹ç§»åˆ°ä¸­å¿ƒç‚¹
     p.rotate(angle);
     p.scale(scale,scale);
     p.translate(translate,translate);

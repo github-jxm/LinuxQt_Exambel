@@ -22,7 +22,7 @@ MainWidget::MainWidget(QWidget *parent)
  
 void MainWidget::createCtrlWidget()
 {
-    //  Ðý×ª¿ØÖÆ
+    //  æ—‹è½¬æŽ§åˆ¶
     QGroupBox *rotateGroup = new QGroupBox(tr("Rotate"));
     QSlider *rotateSlider = new QSlider;
     rotateSlider->setOrientation(Qt::Horizontal);
@@ -32,7 +32,7 @@ void MainWidget::createCtrlWidget()
     l1->addWidget(rotateSlider);
     rotateGroup->setLayout(l1);
         
-    //  Ëõ·Å¿ØÖÆ
+    //  ç¼©æ”¾æŽ§åˆ¶
     QGroupBox *scaleGroup = new QGroupBox(tr("Scale"));
     QSlider *scaleSlider = new QSlider;
     scaleSlider->setOrientation(Qt::Horizontal);
@@ -43,7 +43,7 @@ void MainWidget::createCtrlWidget()
     l2->addWidget(scaleSlider);
     scaleGroup->setLayout(l2);   
    
-    //  Æ½ÒÆ¿ØÖÆ
+    //  å¹³ç§»æŽ§åˆ¶
     QGroupBox *translateGroup = new QGroupBox(tr("Translate"));
     QSlider *translateSlider = new QSlider;
     translateSlider->setOrientation(Qt::Horizontal);

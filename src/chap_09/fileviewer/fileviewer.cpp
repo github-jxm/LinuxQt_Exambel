@@ -30,7 +30,7 @@ FileViewer::~FileViewer()
 
 }
 
-//显示文件信息列表
+//鏄剧ず鏂囦欢淇℃伅鍒楄〃
 void FileViewer::showFileInfoList(QFileInfoList list)
 {
     ListWidgetFile->clear();

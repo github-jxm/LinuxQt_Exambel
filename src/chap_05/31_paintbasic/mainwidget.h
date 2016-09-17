@@ -23,12 +23,12 @@ private:
     PaintArea *area;
 
     QComboBox *shapeComboBox;
-    QSpinBox *widthSpinBox;
+    QSpinBox  *widthSpinBox;
     QComboBox *penStyleComboBox;
     QComboBox *penCapComboBox;
     QComboBox *penJoinComboBox;
     QComboBox *brushStyleComboBox;
-    QFrame *colorFrame;
+    QFrame    *colorFrame;
 };
 
 #endif 	// MAINWIDGET_H
