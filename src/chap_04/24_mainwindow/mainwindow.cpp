@@ -2,7 +2,7 @@
 
 #include <QtGui>
 
-// Ö÷´°¿ÚÊµÏÖ
+// ä¸»çª—å£å®žçŽ°
 MainWindow::MainWindow()
 {
     setWindowTitle(tr("Doc"));
@@ -19,46 +19,46 @@ MainWindow::createActions()
 {
 	
     // file open action
-    fileOpenAction = new QAction(QIcon(":/images/open.png"),tr("Open"),this);	// ´ò¿ªÎÄ¼þ
+    fileOpenAction = new QAction(QIcon(":/images/open.png"),tr("Open"),this);	// æ‰“å¼€æ–‡ä»¶
     fileOpenAction->setShortcut(tr("Ctrl+O"));
     fileOpenAction->setStatusTip(tr("open a file"));
     connect(fileOpenAction,SIGNAL(triggered()),this,SLOT(slotOpenFile()));
 
     
     // file new action
-    fileNewAction = new QAction(QIcon(":/images/new.png"),tr("New"),this);	// ÐÂ½¨ÎÄ¼þ
+    fileNewAction = new QAction(QIcon(":/images/new.png"),tr("New"),this);	// æ–°å»ºæ–‡ä»¶
     fileNewAction->setShortcut(tr("Ctrl+N"));
     fileNewAction->setStatusTip(tr("new file"));
     connect(fileNewAction,SIGNAL(triggered()),this,SLOT(slotNewFile()));
 
     // save file action
-    fileSaveAction = new QAction(QPixmap(":/images/save.png"),tr("Save"),this);	// ±£´æÎÄ¼þ 
+    fileSaveAction = new QAction(QPixmap(":/images/save.png"),tr("Save"),this);	// ä¿å­˜æ–‡ä»¶ 
     fileSaveAction->setShortcut(tr("Ctrl+S"));
     fileSaveAction->setStatusTip(tr("save file"));
     connect(fileSaveAction,SIGNAL(activated()),this,SLOT(slotSaveFile()));
 
     // exit action
-    exitAction = new QAction(tr("Exit"), this);	// ÍË³ö
+    exitAction = new QAction(tr("Exit"), this);	// é€€å‡º
     exitAction->setShortcut(tr("Ctrl+Q"));
     exitAction->setStatusTip(tr("exit"));
     connect(exitAction, SIGNAL(triggered()), this, SLOT(close()));
 
-    cutAction = new QAction(QIcon(":/images/cut.png"), tr("Cut"), this);		// ¼ôÇÐ
+    cutAction = new QAction(QIcon(":/images/cut.png"), tr("Cut"), this);		// å‰ªåˆ‡
     cutAction->setShortcut(tr("Ctrl+X"));
     cutAction->setStatusTip(tr("cut to clipboard"));
     connect(cutAction, SIGNAL(triggered()), text, SLOT(cut()));
 
-    copyAction = new QAction(QIcon(":/images/copy.png"), tr("Copy"), this);		// ¸´ÖÆ
+    copyAction = new QAction(QIcon(":/images/copy.png"), tr("Copy"), this);		// å¤åˆ¶
     copyAction->setShortcut(tr("Ctrl+C"));
     copyAction->setStatusTip(tr("copy to clipboard"));
     connect(copyAction, SIGNAL(triggered()), text, SLOT(copy()));
 
-    pasteAction = new QAction(QIcon(":/images/paste.png"), tr("Paste"), this);		// Õ³Ìù
+    pasteAction = new QAction(QIcon(":/images/paste.png"), tr("Paste"), this);		// ç²˜è´´
     pasteAction->setShortcut(tr("Ctrl+V"));
     pasteAction->setStatusTip(tr("paste clipboard to selection"));
     connect(pasteAction, SIGNAL(triggered()), text, SLOT(paste()));
 
-    aboutAction = new QAction(tr("About"), this);		// ¹ØÓÚ
+    aboutAction = new QAction(tr("About"), this);		// å…³äºŽ
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(slotAbout()));
 }
 
