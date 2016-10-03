@@ -1,5 +1,6 @@
 #include <QtGui>
 #include "drawwidget.h"
+#include <QDebug>
 
 DrawWidget::DrawWidget()	
 {
@@ -8,10 +9,12 @@ DrawWidget::DrawWidget()
     QPalette palette = this->palette();
     palette.setColor(QPalette::Window,Qt::white);
     setPalette(palette);
-    
+
     pix = new QPixmap(size());
     pix->fill(Qt::white);
-    
+
+    painter = new QPainter(pix);
+
     setMinimumSize(600,400);
 }
 
@@ -37,17 +40,17 @@ void DrawWidget::mousePressEvent(QMouseEvent * e)
 
 void DrawWidget::mouseMoveEvent(QMouseEvent * e)
 {
-    QPainter *painter = new QPainter(pix);
+    //QPainter *painter = new QPainter(pix);
     QPen pen;
-    pen.setStyle((Qt::PenStyle)style);      	
+    pen.setStyle((Qt::PenStyle)style);
     pen.setWidth(weight);
     pen.setColor(color);
     painter->setPen(pen);
-    
+
     painter->drawLine(startPos,e->pos());
     startPos = e->pos();
     update();
-    
+
 }
 
 void DrawWidget::paintEvent(QPaintEvent *)
@@ -59,13 +62,14 @@ void DrawWidget::paintEvent(QPaintEvent *)
 
 void DrawWidget::resizeEvent(QResizeEvent * event)
 {
-//    if(height() > pix->height() || width() > pix->width())
+    if(height() > pix->height() || width() > pix->width())
     {
         QPixmap *newPix = new QPixmap(size());
         newPix->fill(Qt::white);
         QPainter p(newPix);
         p.drawPixmap(QPoint(0,0),*pix);
-        pix = newPix;
+//        pix = newPix;
+//        painter = new QPainter(newPix);
     }
     QWidget::resizeEvent(event);
 }
@@ -76,5 +80,7 @@ void DrawWidget::clear()
     QPixmap *clearPix = new QPixmap(size());
     clearPix->fill(Qt::white);
     pix = clearPix;
+    pix->fill(Qt::white);
     update();
+    painter = new QPainter(pix);
 }

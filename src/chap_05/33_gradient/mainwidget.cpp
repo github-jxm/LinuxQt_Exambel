@@ -27,10 +27,10 @@ MainWidget::MainWidget(QWidget *parent)
 void
 MainWidget::createCtrlWidget()
 {
-    startPushButton = new QPushButton(tr("start"));
+    startPushButton = new QPushButton(tr("start"));// 始
     startPushButton->setAutoFillBackground(true);
     startPushButton->setPalette(QPalette(Qt::green));
-    endPushButton = new QPushButton(tr("end"));
+    endPushButton = new QPushButton(tr("end"));    // 终
     endPushButton->setAutoFillBackground(true);
     endPushButton->setPalette(QPalette(Qt::blue));
     connect(startPushButton,SIGNAL(clicked()),this,SLOT(slotStartColor()));

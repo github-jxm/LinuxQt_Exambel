@@ -32,6 +32,8 @@ private:
     int style;
     int weight;
     QColor color;
+
+    QPainter *painter;
 };
 
 #endif 

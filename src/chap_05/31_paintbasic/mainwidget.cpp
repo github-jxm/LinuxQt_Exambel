@@ -15,7 +15,7 @@ MainWidget::MainWidget(QWidget *parent)
     QLabel *label5 = new QLabel(tr("Pen Cap:"));
     QLabel *label6 = new QLabel(tr("Pen Join:"));
     QLabel *label7 = new QLabel(tr("Brush:"));
-
+    //形状
     shapeComboBox = new QComboBox;
     shapeComboBox->addItem(tr("Line"), PaintArea::Line);
     shapeComboBox->addItem(tr("Polygon"), PaintArea::Polygon);
@@ -29,17 +29,17 @@ MainWidget::MainWidget(QWidget *parent)
     shapeComboBox->addItem(tr("Text"), PaintArea::Text);
     shapeComboBox->addItem(tr("Pixmap"), PaintArea::Pixmap);
     connect(shapeComboBox,SIGNAL(activated(int)),this,SLOT(slotShape(int)));
-    
+    // 宽度
     widthSpinBox = new QSpinBox;
     widthSpinBox->setRange(0,20);
     connect(widthSpinBox,SIGNAL(valueChanged(int)),this,SLOT(slotPenWidth(int)));
-    
+    // 颜色
     colorFrame = new QFrame;
     colorFrame->setAutoFillBackground(true);
     colorFrame->setPalette(QPalette(Qt::blue));
     QPushButton *colorPushButton = new QPushButton(tr("Change"));
     connect(colorPushButton,SIGNAL(clicked()),this,SLOT(slotPenColor()));
-    
+    // 画笔风格
     penStyleComboBox = new QComboBox;
     penStyleComboBox->addItem(tr("Solid"), Qt::SolidLine);
     penStyleComboBox->addItem(tr("Dash"), Qt::DashLine);
@@ -48,19 +48,19 @@ MainWidget::MainWidget(QWidget *parent)
     penStyleComboBox->addItem(tr("Dash Dot Dot"), Qt::DashDotDotLine);
     penStyleComboBox->addItem(tr("None"), Qt::NoPen);
     connect(penStyleComboBox,SIGNAL(activated(int)),this,SLOT(slotPenStyle(int)));
-    
+    // 画笔顶端
     penCapComboBox = new QComboBox;
     penCapComboBox->addItem(tr("Flat"), Qt::FlatCap);
     penCapComboBox->addItem(tr("Square"), Qt::SquareCap);
     penCapComboBox->addItem(tr("Round"), Qt::RoundCap);
     connect(penCapComboBox,SIGNAL(activated(int)),this,SLOT(slotPenCap(int)));
- 
+    // 画笔连接点
     penJoinComboBox = new QComboBox;
     penJoinComboBox->addItem(tr("Miter"), Qt::MiterJoin);
     penJoinComboBox->addItem(tr("Bevel"), Qt::BevelJoin);
     penJoinComboBox->addItem(tr("Round"), Qt::RoundJoin);
     connect(penJoinComboBox,SIGNAL(activated(int)),this,SLOT(slotPenJoin(int)));
-    
+    // 画刷
     brushStyleComboBox = new QComboBox;
     brushStyleComboBox->addItem(tr("Linear Gradient"),
              Qt::LinearGradientPattern);
@@ -86,7 +86,7 @@ MainWidget::MainWidget(QWidget *parent)
     brushStyleComboBox->addItem(tr("None"), Qt::NoBrush);
     connect(brushStyleComboBox,SIGNAL(activated(int)),this,SLOT(slotBrush(int)));
     
-    // 甯冨眬
+    // 布局
     QGridLayout *ctrlLayout = new QGridLayout;
     int labelCol=0;
     int contentCol=1;
@@ -114,7 +114,7 @@ MainWidget::MainWidget(QWidget *parent)
     setLayout(mainLayout);    
     
     setWindowTitle(tr("Basic Paint"));    
-    
+    // init
     slotShape(0);
     slotPenWidth(0);
     slotPenStyle(0);
@@ -163,7 +163,7 @@ MainWidget::slotPenColor()
 }
 
 void
-MainWidget::slotPenStyle(int value)
+MainWidget::slotPenStyle(int value) // 画笔风格
 {
     int width = widthSpinBox->value();
     QColor color = colorFrame->palette().color(QPalette::Window);

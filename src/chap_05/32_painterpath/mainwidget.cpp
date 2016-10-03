@@ -21,32 +21,32 @@ MainWidget::MainWidget(QWidget *parent)
  
 void MainWidget::createCtrlWidget()
 {
-    QLabel *label1 = new QLabel(tr("Fill Rule:"));
-    QLabel *label2 = new QLabel(tr("Pen Width:"));
-    QLabel *label3 = new QLabel(tr("Pen Color:"));
-    QLabel *label4 = new QLabel(tr("Brush Color:"));
-    
+    QLabel *label1 = new QLabel(tr("Fill Rule:"));  // 填充规则
+    QLabel *label2 = new QLabel(tr("Pen Width:"));  // 画笔线宽
+    QLabel *label3 = new QLabel(tr("Pen Color:"));  // 画笔颜色
+    QLabel *label4 = new QLabel(tr("Brush Color:"));// 画刷颜色
+    // 填充规则
     fillRuleComboBox = new QComboBox;
     fillRuleComboBox->addItem(tr("Odd Even"),Qt::OddEvenFill);
     fillRuleComboBox->addItem(tr("Winding"),Qt::WindingFill);
     connect(fillRuleComboBox,SIGNAL(activated(int)),this,SLOT(slotFillRule()));
-    
+    // 画笔线宽
     QSpinBox *widthSpinBox = new QSpinBox;
     widthSpinBox->setRange(1,20);
     connect(widthSpinBox,SIGNAL(valueChanged(int)),this,SLOT(slotPenWidth(int)));
-    
+    // 画笔颜色
     penColorFrame = new QFrame;
     penColorFrame->setAutoFillBackground(true);
     penColorFrame->setPalette(QPalette(Qt::red));
     QPushButton *penColorPushButton = new QPushButton(tr("Change"));
     connect(penColorPushButton,SIGNAL(clicked()),this,SLOT(slotPenColor()));
-    
+    // 画刷颜色
     brushColorFrame = new QFrame;
     brushColorFrame->setAutoFillBackground(true);
     brushColorFrame->setPalette(QPalette(Qt::blue));
     QPushButton *brushColorPushButton = new QPushButton(tr("Change"));
     connect(brushColorPushButton,SIGNAL(clicked()),this,SLOT(slotBrushColor()));    
-
+    // 布局
     QGridLayout *grid = new QGridLayout;
     grid->addWidget(label1,0,0);
     grid->addWidget(fillRuleComboBox,0,1);
@@ -60,7 +60,7 @@ void MainWidget::createCtrlWidget()
     grid->addWidget(brushColorPushButton,3,2);
     grid->setMargin(10);
     grid->setSpacing(10);
-    
+
     QVBoxLayout *layout = new QVBoxLayout;
     layout->addLayout(grid);
     layout->addStretch();

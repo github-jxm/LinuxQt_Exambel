@@ -39,8 +39,8 @@ PaintArea::paintEvent(QPaintEvent *)
     if (mainWidget->style == Qt::LinearGradientPattern) 
     {
         QLinearGradient linearGradient(startPoint,endPoint);
-        linearGradient.setColorAt(0.0, mainWidget->startColor);
-        linearGradient.setColorAt(1.0, mainWidget->endColor);
+        linearGradient.setColorAt(0.0, mainWidget->startColor);// 1.0  表示起点
+        linearGradient.setColorAt(1.0, mainWidget->endColor);  // 0.1 表示重点
         linearGradient.setSpread(mainWidget->spread);
         p.setBrush(linearGradient);
     } 
