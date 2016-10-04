@@ -38,7 +38,7 @@ void PicTrans::slotChanged(int value)
     	for (int w=0;w<width;w++)
     	{
     	    int alpha = qAlpha(img->pixel(w,h));
-	    if (alpha == 0)	//  瀹屽叏閫忔槑
+        if (alpha == 0)	// 完全透明
 	    {
     	    	int red = qRed(bkColor.rgb());
     	    	int green = qGreen(bkColor.rgb());
