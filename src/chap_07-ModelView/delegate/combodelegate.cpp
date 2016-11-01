@@ -10,11 +10,11 @@ QWidget *ComboDelegate::createEditor(QWidget *parent,
     const QModelIndex &/* index */) const
 {
     QComboBox *editor = new QComboBox(parent);
-    editor->addItem(QString::fromLocal8Bit("工人"));
-    editor->addItem(QString::fromLocal8Bit("农民"));
-    editor->addItem(QString::fromLocal8Bit("医生"));
-    editor->addItem(QString::fromLocal8Bit("律师"));
-    editor->addItem(QString::fromLocal8Bit("军人"));
+    editor->addItem(QString::fromLocal8Bit("宸ヤ汉"));
+    editor->addItem(QString::fromLocal8Bit("鍐滄皯"));
+    editor->addItem(QString::fromLocal8Bit("鍖荤敓"));
+    editor->addItem(QString::fromLocal8Bit("寰嬪笀"));
+    editor->addItem(QString::fromLocal8Bit("鍐涗汉"));
 
     editor->installEventFilter(const_cast<ComboDelegate*>(this));
 
