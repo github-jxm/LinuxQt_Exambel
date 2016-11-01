@@ -1,4 +1,5 @@
 #include "eventfilter.h"
+//#include <QDebug>
 
 EventFilter::EventFilter( QWidget *parent, Qt::WindowFlags  f )
     : QDialog( parent, f )
@@ -46,6 +47,9 @@ EventFilter::~EventFilter()
 
 bool EventFilter::eventFilter(QObject* watched,QEvent* event)
 {
+//    static int i;
+//    i ++;
+//    qDebug () << i ;
 	if(watched == Label1)
 	{
 		if(event->type() == QEvent::MouseButtonPress)
