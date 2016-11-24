@@ -99,10 +99,10 @@ void TcpClient::slotEnter()
 		
 		tcpSocket->connectToHost ( *serverIP, port);
 		
-		status=true;
-	}
-	else
-	{
+        status=true;
+
+    } else {
+
 		int length = 0; 
 		
 		QString msg=userName+tr(":Leave Chat Room");
@@ -114,7 +114,6 @@ void TcpClient::slotEnter()
 		
 		status=false;
 	}
-	
 }
 
 void TcpClient::slotConnected()                     
@@ -157,12 +156,10 @@ void TcpClient::dataReceived()
  		datagram.resize(tcpSocket->bytesAvailable());
  		QHostAddress sender;
 
-
  		tcpSocket->read(datagram.data(), datagram.size());
 
 		QString msg=datagram.data();
 	
 		ListWidgetContent->addItem (msg.left(datagram.size()));
     }
-
 }

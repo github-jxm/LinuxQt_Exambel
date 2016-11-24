@@ -32,7 +32,6 @@ TcpServer::TcpServer( QWidget *parent, Qt::WindowFlags  f )
 
 	port = 8010; 
 	LineEditPort->setText(QString::number(port)); 
-
 }
 
 TcpServer::~TcpServer()

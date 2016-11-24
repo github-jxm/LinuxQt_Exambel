@@ -4,7 +4,6 @@
 
 int main( int argc, char **argv )
 {
-    	
     QApplication a( argc, argv );
     QTranslator translator(0);
     translator.load("tcpclient_zh",".");

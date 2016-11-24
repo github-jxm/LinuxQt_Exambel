@@ -23,28 +23,28 @@ void Server::incomingConnection(int socketDescriptor)
 
 void Server::updateClients(QString msg,int length)
 {
-	emit updateServer(msg,length);
+    emit updateServer(msg,length);
 
-	for(int i=0;i<tcpClientSocketList.count();i++)
-	{
-		QTcpSocket *item=tcpClientSocketList.at(i);
-    	if(item->write(msg.toLatin1(), length)!=length)
-    	{
-    		continue ;
-    	}	
-	}
+    for(int i=0;i<tcpClientSocketList.count();i++)
+    {
+            QTcpSocket *item=tcpClientSocketList.at(i);
+            if(item->write(msg.toLatin1(), length)!=length)
+            {
+                continue ;
+            }
+    }
 }
 
 void Server::slotDisconnected(int descriptor)
 {
-	for(int i=0;i<tcpClientSocketList.count();i++)
-	{
-		QTcpSocket *item=tcpClientSocketList.at(i);
-    	if(item->socketDescriptor ()==descriptor)
-    	{
-    		tcpClientSocketList.removeAt(i);
-    		return;
-    	}	
-	}	
-	return;
+    for(int i=0;i<tcpClientSocketList.count();i++)
+    {
+            QTcpSocket *item=tcpClientSocketList.at(i);
+            if(item->socketDescriptor ()==descriptor)
+            {
+                tcpClientSocketList.removeAt(i);
+                return;
+            }
+    }
+    return;
 }
