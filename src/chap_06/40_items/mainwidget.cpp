@@ -22,8 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowTitle(tr("Graphics Items"));
 }
 
-void
-MainWindow::createActions()
+void MainWindow::createActions()
 {
     newAct = new QAction(tr("New"),this);
     newAct->setStatusTip(tr("New"));
@@ -58,8 +57,7 @@ MainWindow::createActions()
     connect(addAlphaItemAct,SIGNAL(triggered()),this,SLOT(slotAddAlphaItem()));
 }
 
-void
-MainWindow::createMenus()
+void MainWindow::createMenus()
 {
     QMenu * fileMenu = menuBar()->addMenu(tr("File"));
     fileMenu->addAction(newAct);
@@ -78,8 +76,7 @@ MainWindow::createMenus()
 
 }
 
-void
-MainWindow::initScene()
+void MainWindow::initScene()
 {
     int i;
     for (i=0; i<3; i++)
@@ -96,8 +93,7 @@ MainWindow::initScene()
         slotAddTextItem();
 }
 
-void
-MainWindow::slotNew()
+void MainWindow::slotNew()
 {
     slotClear();
     initScene();
@@ -105,8 +101,7 @@ MainWindow::slotNew()
     newWin->show();
 }
 
-void
-MainWindow::slotClear()
+void MainWindow::slotClear()
 {
     QList<QGraphicsItem*> listItem = scene->items();
 
@@ -117,24 +112,21 @@ MainWindow::slotClear()
     }
 }
 
-
 //   Add a ellipse item
-void
-MainWindow::slotAddEllipseItem()
+void MainWindow::slotAddEllipseItem()
 {
     QGraphicsEllipseItem *item = new QGraphicsEllipseItem(QRectF(0,0,80,60));
     item->setPen(Qt::NoPen);
-    item->setBrush(QColor(qrand()%256,qrand()%256,qrand()%256));
-    qreal scale = ((qrand()%10)+1)/5.0;
+    item->setBrush(QColor(qrand()%256,qrand()%256,qrand()%256));  // 颜色随机
+    qreal scale = ((qrand()%10)+1)/5.0;                                                       // 比例缩放随机
     item->scale(scale,scale);
     item->setFlag(QGraphicsItem::ItemIsMovable);
     scene->addItem(item);
-    item->setPos((qrand()%int(scene->sceneRect().width()))-200,(qrand()%int(scene->sceneRect().height()))-200);
+    item->setPos((qrand()%int(scene->sceneRect().width()))-200,(qrand()%int(scene->sceneRect().height()))-200); // 未知随机
 }
 
 //   Add a polygon item
-void
-MainWindow::slotAddPolygonItem()
+void MainWindow::slotAddPolygonItem()
 {
     QVector<QPoint> v;
     v << QPoint(30,-15) << QPoint(0,-30) << QPoint(-30,-15) << QPoint(-30,15) << QPoint(0,30) << QPoint(30,15);
@@ -146,8 +138,7 @@ MainWindow::slotAddPolygonItem()
 }
 
 //   Add a rectangle item
-void
-MainWindow::slotAddRectItem()
+void MainWindow::slotAddRectItem()
 {
     QGraphicsRectItem *item = new QGraphicsRectItem(QRectF(0,0,60,60));
     QPen pen;
@@ -161,8 +152,7 @@ MainWindow::slotAddRectItem()
 }
 
 //   Add a text item
-void
-MainWindow::slotAddTextItem()
+void MainWindow::slotAddTextItem()
 {
     QFont font("Times",16);
     QGraphicsTextItem *item = new QGraphicsTextItem("Hello Qt");
@@ -174,8 +164,7 @@ MainWindow::slotAddTextItem()
 }
 
 //   Add a flash item
-void
-MainWindow::slotAddFlashItem()
+void MainWindow::slotAddFlashItem()
 {
     FlashItem *item = new FlashItem;
     qreal scale = ((qrand()%10)+1)/5.0;
@@ -185,29 +174,28 @@ MainWindow::slotAddFlashItem()
 }
 
 //   Add a butterfly item
-void
-MainWindow::slotAddAlphaItem()
+void MainWindow::slotAddAlphaItem()
 {
     QGraphicsPixmapItem *item = scene->addPixmap(QPixmap(":/images/butterfly"));
     item->setFlag(QGraphicsItem::ItemIsMovable);
     item->setPos((qrand()%int(scene->sceneRect().width()))-200,(qrand()%int(scene->sceneRect().height()))-200);
-    
 }
 
-void
-MainWindow::slotAddAnimationItem()
+/*
+ QTimeLine学习    http://blog.csdn.net/wswxfwps/article/details/10915541
+*/
+void MainWindow::slotAddAnimationItem()
 {
     StarItem *item = new StarItem;
     QGraphicsItemAnimation *anim = new QGraphicsItemAnimation;
     anim->setItem(item);
-    QTimeLine *timeLine = new QTimeLine(4000);
-    timeLine->setCurveShape(QTimeLine::SineCurve);
+    QTimeLine *timeLine = new QTimeLine(4000);        // 动画运行时间　4秒
+    timeLine->setCurveShape(QTimeLine::SineCurve);  // 信号frameChanged以线性的方式发送
     timeLine->setLoopCount(0);
     anim->setTimeLine(timeLine);
     
     int y = (qrand()%400) - 200;
-    for (int i=0; i<400; i++)
-    {
+    for (int i=0; i<400; i++) {
         anim->setPosAt(i/400.0, QPointF(i-200,y));
     }
     timeLine->start();

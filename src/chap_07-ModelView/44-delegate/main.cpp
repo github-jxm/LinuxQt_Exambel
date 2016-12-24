@@ -9,8 +9,8 @@ int main( int argc, char **argv )
 {
     QApplication app(argc, argv);
     
-    QFont font("ZYSong18030",12);
-    app.setFont(font);
+//    QFont font("ZYSong18030",12);
+//    app.setFont(font);
     
     QTranslator translator;
     translator.load("delegate_zh");
@@ -33,8 +33,7 @@ int main( int argc, char **argv )
     model.setHeaderData(3,Qt::Horizontal,QObject::tr("Income"));
     
     QFile file("./data.tab");
-    if (file.open(QFile::ReadOnly | QFile::Text)) 
-    {
+    if (file.open(QFile::ReadOnly | QFile::Text))  {
          QTextStream stream(&file);
          QString line;
          
@@ -43,20 +42,14 @@ int main( int argc, char **argv )
          int row = 0;
          do {
                  line = stream.readLine();
-                 if (!line.isEmpty()) 
-                 {
-
+                 if (!line.isEmpty())  {
                      model.insertRows(row, 1, QModelIndex());
 
                      QStringList pieces = line.split(",", QString::SkipEmptyParts);
-                     model.setData(model.index(row, 0, QModelIndex()),
-                                    pieces.value(0));
-                     model.setData(model.index(row, 1, QModelIndex()),
-                                    pieces.value(1));
-                     model.setData(model.index(row, 2, QModelIndex()),
-                                    pieces.value(2));
-                     model.setData(model.index(row,3, QModelIndex()),
-                                    pieces.value(3));            
+                     model.setData(model.index(row, 0, QModelIndex()), pieces.value(0));
+                     model.setData(model.index(row, 1, QModelIndex()), pieces.value(1));
+                     model.setData(model.index(row, 2, QModelIndex()), pieces.value(2));
+                     model.setData(model.index(row,3, QModelIndex()), pieces.value(3));
                      row++;
                  }
             } while (!line.isEmpty());

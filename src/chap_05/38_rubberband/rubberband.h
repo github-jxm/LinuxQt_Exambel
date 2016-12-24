@@ -11,7 +11,7 @@ class RubberBand : public QMainWindow
 public:
     RubberBand(QWidget *parent=0);
     
-    void mousePressEvent(QMouseEvent *);	// event
+    void mousePressEvent(QMouseEvent *);	    // event
     void mouseMoveEvent(QMouseEvent *);		// event
     void mouseReleaseEvent(QMouseEvent *);	// event
 

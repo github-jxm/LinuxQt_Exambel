@@ -39,10 +39,8 @@ MainWidget::MainWidget(QWidget *parent)
     setWindowTitle(tr("Graphics Item Transformation"));
 }
 
-void
-MainWidget::createControllFrame()
+void MainWidget::createControllFrame()
 {
-   
     //  Rotate Controll
     QGroupBox *rotateGroup = new QGroupBox(tr("Rotate"));
     QSlider *rotateSlider = new QSlider;
@@ -95,39 +93,33 @@ MainWidget::createControllFrame()
     ctrlFrame->setLayout(ctrlLayout);
 }
 
-void
-MainWidget::slotRotate(int value)
+void MainWidget::slotRotate(int value)
 {
     item->rotate(value-angle);
     angle = value;
 }
 
-void
-MainWidget::slotScale(int value)
+void MainWidget::slotScale(int value)
 {
     qreal s;
-    if (value>scale)
-    	s = pow(1.1,(value-scale));
-    else
-    	s = pow(1/1.1,(scale-value));
+    if (value>scale){
+            s = pow(1.1,(value-scale));
+    }else{
+            s = pow(1/1.1,(scale-value));
+    }
     	
     item->scale(s,s);
     
     scale = value;
 }
 
-void
-MainWidget::slotShear(int value)
+void MainWidget::slotShear(int value)
 {
-
     item->shear((value-shear)/10.0,0);
     shear = value;
-
 }
 
-
-void
-MainWidget::slotTranslate(int value)
+void MainWidget::slotTranslate(int value)
 {
     item->translate(value-translate,value-translate);
     translate = value;

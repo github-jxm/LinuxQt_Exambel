@@ -15,6 +15,7 @@ RubberBand::RubberBand(QWidget *parent)
 
 void RubberBand::mousePressEvent(QMouseEvent * e)
 {
+    e = e;  // 防止编译警告
     origin = e->pos();
     if (!rubberBand)
          rubberBand = new QRubberBand(QRubberBand::Rectangle, this);
@@ -24,12 +25,14 @@ void RubberBand::mousePressEvent(QMouseEvent * e)
 
 void RubberBand::mouseMoveEvent(QMouseEvent * e)
 {
+    e = e;  // 防止编译警告
     if (rubberBand)
          rubberBand->setGeometry(QRect(origin, e->pos()).normalized());
 }
 
 void RubberBand::mouseReleaseEvent(QMouseEvent * e)
 {
+    e = e;  // 防止编译警告
     if (rubberBand)
          rubberBand->hide();
 }

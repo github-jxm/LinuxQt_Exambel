@@ -24,8 +24,7 @@ MainWidget::MainWidget(QWidget *parent)
     setWindowTitle(tr("Gradient"));   
 }
  
-void
-MainWidget::createCtrlWidget()
+void MainWidget::createCtrlWidget()
 {
     startPushButton = new QPushButton(tr("start"));// 始
     startPushButton->setAutoFillBackground(true);
@@ -58,30 +57,26 @@ MainWidget::createCtrlWidget()
     ctrlWidget->setLayout(layout);
 }
 
-void
-MainWidget::slotStartColor()
+void MainWidget::slotStartColor()
 {
     startColor = QColorDialog::getColor(Qt::green);
     startPushButton->setPalette(QPalette(startColor));
 
 }
 
-void
-MainWidget::slotEndColor()
+void MainWidget::slotEndColor()
 {
     endColor = QColorDialog::getColor(Qt::blue);
     endPushButton->setPalette(QPalette(endColor));
 
 }
 
-void
-MainWidget::slotSetStyle(int value)
+void MainWidget::slotSetStyle(int value)
 {
     style = Qt::BrushStyle(gradientComboBox->itemData(value, Qt::UserRole).toInt());
 }
 
-void
-MainWidget::slotSetSpread(int value)
+void MainWidget::slotSetSpread(int value)
 {
     spread = QGradient::Spread(spreadComboBox->itemData(value, Qt::UserRole).toInt());
 }

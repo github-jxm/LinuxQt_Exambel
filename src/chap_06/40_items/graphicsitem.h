@@ -5,7 +5,7 @@
 
 class QGraphicsSceneMouseEvent;
 
-//  Flash Item
+//  Flash Item  闪烁的圆
 class FlashItem : public QGraphicsItem , QObject
 {
 public:
@@ -22,7 +22,7 @@ private:
     QTimer *timer;
 };
 
-//  Star Item
+//  Star Item     星星
 class StarItem : public QGraphicsItem
 {
 public:

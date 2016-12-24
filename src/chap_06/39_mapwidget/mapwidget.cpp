@@ -4,10 +4,9 @@
 MapWidget::MapWidget()
 { 
     readMap();   
-//    map.load(":/images/map.png");
-    zoom = 50;
+    zoom = 50;              // 缩放比例
     
-    int width = map.width();
+    int width  = map.width();
     int height = map.height();
     
     QGraphicsScene *scene = new QGraphicsScene(this);
@@ -16,7 +15,8 @@ MapWidget::MapWidget()
     
     setScene(scene);
     setCacheMode(CacheBackground);
-    // 用于地图缩放和滑动条
+
+    /* 用于地图缩放的滑动条 */
     QSlider *slider = new QSlider;
     slider->setOrientation(Qt::Vertical);
     slider->setRange(1,100);
@@ -33,7 +33,7 @@ MapWidget::MapWidget()
     zoomoutLabel->setPixmap(QPixmap(":/images/zoomout.png"));
     
     //  create coordinate area
-    // 坐标值　显示区域
+    /* 坐标值　显示区域*/
     QFrame *coordFrame = new QFrame;
     QLabel *label1 = new QLabel(tr("GraphicsView :"));
     viewCoord = new QLabel;
@@ -78,69 +78,59 @@ MapWidget::MapWidget()
 }
 
 // read map information
-void
-MapWidget::readMap()
+void MapWidget::readMap()
 {
     QFile mapFile("maps.txt"); 
     QString mapName;
-    int ok = mapFile.open(QIODevice::ReadOnly);
-    if (ok)
-    {
-    	QTextStream t(&mapFile);
-    	if (!t.atEnd())
-    	{
-    	    t >> mapName;
-    	    t >> x1 >> y1 >> x2 >> y2;
-    	}
+    bool ok = mapFile.open(QIODevice::ReadOnly);
+    if (ok) {
+            QTextStream t(&mapFile);
+            if (!t.atEnd())
+            {
+                    t >> mapName;
+                    t >> x1 >> y1 >> x2 >> y2;
+            }
     }
   
     map.load(mapName);
-    if (map.isNull())
-    	printf("map is null");
+    if (map.isNull())  printf("map is null");
 }
 
-void
-MapWidget::slotZoom(int value)
+void MapWidget::slotZoom(int value)
 {
-    qreal s;
-    if (value>zoom)	// zoom in
-    {
-  	s = pow(1.01,(value-zoom));
-    }
-    else		// zoom out
-    {
-	s = pow((1/1.01),(zoom-value));
-    }
-
-    scale(s,s);
-    zoom = value;
+        qreal s;
+        if (value>zoom){	// zoom in
+                s = pow(1.01,     (value-zoom));      //  1.01 ^ (value-zoom)
+        } else{		// zoom out
+                s = pow((1/1.01),(zoom-value));
+        }
+        scale(s,s);
+        zoom = value;
 }
 
-void
-MapWidget::drawBackground(QPainter *painter, const QRectF &rect)
+void MapWidget::drawBackground(QPainter *painter, const QRectF &rect)
 {
-    painter->drawPixmap(int(sceneRect().left()),int(sceneRect().top()),map);
+        QRectF rect_tmp = rect;  // 防止编译警告
+        painter->drawPixmap(int(sceneRect().left()),int(sceneRect().top()),map);
 }
 
-void
-MapWidget::mouseMoveEvent(QMouseEvent * event)
+void MapWidget::mouseMoveEvent(QMouseEvent * event)
 {
-    // QGraphics View 坐标 // view coordinate
-    QPoint viewPoint = event->pos();
-    viewCoord->setText(QString::number(viewPoint.x()) + ", " + QString::number(viewPoint.y()));
-    
-    // QGraphicsScene坐标 // scene coordinate
-    QPointF scenePoint = mapToScene(viewPoint);
-    sceneCoord->setText(QString::number(scenePoint.x()) + ", " + QString::number(scenePoint.y()));
-    
-    // 地图坐标(经,纬度)  // map coordinate
-    QPointF latLon = mapToMap(scenePoint);
-    mapCoord->setText(QString::number(latLon.x()) + ", " + QString::number(latLon.y()));
+        // QGraphics View 坐标 // view coordinate
+        QPoint viewPoint = event->pos();
+        viewCoord->setText(QString::number(viewPoint.x()) + ", "  + QString::number(viewPoint.y()));
+
+        // QGraphicsScene坐标 // scene coordinate
+        QPointF scenePoint = mapToScene(viewPoint);
+        sceneCoord->setText(QString::number(scenePoint.x()) + ", " + QString::number(scenePoint.y()));
+
+        // 地图坐标(经,纬度)  // map coordinate
+        QPointF latLon = mapToMap(scenePoint);
+        mapCoord->setText(QString::number(latLon.x()) + ", " + QString::number(latLon.y()));
 }
 
 // map scene coordinate to map
-QPointF
-MapWidget::mapToMap(QPointF p)
+QPointF MapWidget::mapToMap(QPointF p)
 {
     QPointF latLon;
     qreal w = sceneRect().width();
@@ -150,6 +140,5 @@ MapWidget::mapToMap(QPointF p)
     latLon.setX(lat);
     latLon.setY(lon);
     return latLon;
-    
 }
 

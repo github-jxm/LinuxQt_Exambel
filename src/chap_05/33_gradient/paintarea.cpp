@@ -16,23 +16,19 @@ PaintArea::PaintArea(MainWidget *parent)
     endPoint = QPoint(400,400);
 }
 
-
-void 
-PaintArea::mousePressEvent(QMouseEvent * e)
+void  PaintArea::mousePressEvent(QMouseEvent * e)
 {
     startPoint = e->pos();
 }
 
-void 
-PaintArea::mouseReleaseEvent(QMouseEvent * e)
+void  PaintArea::mouseReleaseEvent(QMouseEvent * e)
 {
     endPoint = e->pos();
     isMouse = true;
     update();
 }
 
-void 
-PaintArea::paintEvent(QPaintEvent *)
+void  PaintArea::paintEvent(QPaintEvent *)
 { 
     QPainter p(this);
     QRect r = rect();

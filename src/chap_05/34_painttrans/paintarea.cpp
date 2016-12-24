@@ -5,6 +5,7 @@
 
 PaintArea::PaintArea(QWidget *parent)
 {
+    parent = parent;  // 防止编译警告
     setPalette(QPalette(Qt::white));
     setAutoFillBackground(true);
     
@@ -13,7 +14,6 @@ PaintArea::PaintArea(QWidget *parent)
     scale = 1;
     angle = 0;
     translate = 0;
-
 }
 
 void PaintArea::setScale(int s)
@@ -34,7 +34,6 @@ void PaintArea::setTranslate(int t)
     update();
 }
 
-
 void PaintArea::paintEvent(QPaintEvent *)
 { 
     QPainter p(this);   
@@ -42,12 +41,11 @@ void PaintArea::paintEvent(QPaintEvent *)
     QPainterPath path;
     path.addRect(-100,-50,200,100);
             
-    p.translate(200,200);	//  把窗体的坐标原点移到中心点
-    p.rotate(angle);
-    p.scale(scale,scale);
-    p.translate(translate,translate);
+    p.translate(200,200);       	//  把窗体的坐标原点移到中心点
+    p.rotate(angle) ;                // 旋转
+    p.scale(scale,scale);         // 缩放
+    p.translate(translate,translate);  // 平移
 
- 
     p.setPen(Qt::red);
     p.drawLine(0, 0, 150, 0);
     p.drawLine(148, -2, 150, 0);
