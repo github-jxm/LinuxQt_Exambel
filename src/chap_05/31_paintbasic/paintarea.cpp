@@ -2,6 +2,7 @@
 
 PaintArea::PaintArea(QWidget *parent)
 {
+    parent = parent; // 防止编译警告
     shape = Line;
 
     QPalette p = palette();
@@ -9,7 +10,7 @@ PaintArea::PaintArea(QWidget *parent)
     setPalette(p);
     setAutoFillBackground(true);
     
-    setMinimumSize(400,400);
+    setMinimumSize(400,400);        // 最小尺寸
 }
 
 void PaintArea::setShape(Shape s)
@@ -39,13 +40,13 @@ void PaintArea::paintEvent(QPaintEvent *)
     QRect rect(50,100,300,200);
     
     static const QPoint points[4] = {
-         QPoint(150, 100),
-         QPoint(300, 150),
-         QPoint(350, 250),
-         QPoint(100, 300)
+             QPoint(150, 100),
+             QPoint(300, 150),
+             QPoint(350, 250),
+             QPoint(100, 300)
      };
      
-    int startAngle = 30 * 16;
+    int startAngle =  30  * 16;
     int spanAngle = 120 * 16;
      
     QPainterPath path;
@@ -54,43 +55,41 @@ void PaintArea::paintEvent(QPaintEvent *)
     path.cubicTo(300,100,200,200,300,300);
     path.cubicTo(100,300,200,200,100,100);
     
-    
-    switch(shape)
-    {
-    case Line:
-        p.drawLine(rect.topLeft(),rect.bottomRight());
-        break;
-    case Rectangle:
-        p.drawRect(rect);
-        break;
-    case RoundRect:
-        p.drawRoundRect(rect);
-        break;
-    case Ellipse:
-        p.drawEllipse(rect);
-        break;
-    case Polygon:
-        p.drawPolygon(points,4);
-        break;
-    case Polyline:
-        p.drawPolyline(points,4);
-        break;
-    case Points:
-        p.drawPoints(points,4);
-        break;
-    case Arc:
-        p.drawArc(rect,startAngle,spanAngle);
-        break;
-    case Path:
-        p.drawPath(path);
-        break;
-    case Text:
-        p.drawText(rect,Qt::AlignCenter,tr("Hello Qt!"));
-        break;
-    case Pixmap:
-        p.drawPixmap(150,150,QPixmap(":/images/butterfly.png"));
-        break;
-    default:
-    	break;
+    switch(shape) {
+            case Line   :                   // 直线
+                    p.drawLine(rect.topLeft(),rect.bottomRight());
+                    break;
+            case Rectangle:             // 长方形
+                    p.drawRect(rect);
+                    break;
+            case RoundRect:           // 圆角方形
+                    p.drawRoundRect(rect);
+                    break;
+            case Ellipse:                   // 椭圆形
+                    p.drawEllipse(rect);
+                    break;
+            case Polygon:               // 多边形
+                    p.drawPolygon(points,4);
+                    break;
+            case Polyline:                // 多边线
+                    p.drawPolyline(points,4);
+                    break;
+            case Points:                   // 点
+                    p.drawPoints(points,4);
+                    break;
+            case Arc:                      // 弧
+                    p.drawArc(rect,startAngle,spanAngle);
+                    break;
+            case Path:                   // 路径
+                    p.drawPath(path);
+                    break;
+            case Text:                   // 文字
+                    p.drawText(rect,Qt::AlignCenter,tr("Hello Qt!"));
+                    break;
+            case Pixmap:            // 图片
+                    p.drawPixmap(150,150,QPixmap(":/images/butterfly.png"));
+                    break;
+            default:
+                    break;
     }
 }

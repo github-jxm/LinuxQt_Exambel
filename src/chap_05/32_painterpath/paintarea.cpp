@@ -46,7 +46,7 @@ void PaintArea::paintEvent(QPaintEvent *)
     QPainter p(this);
     
     QPainterPath path;
-    path.addRect(150,150,100,100);
+    path.addRect(150,150,100,100);  // 加入一个方形
     /*
     path.moveTo(150,150);
     path.lineTo(150,250);
@@ -55,7 +55,7 @@ void PaintArea::paintEvent(QPaintEvent *)
     path.closeSubpath();*/
     
     path.moveTo(100,100);
-    path.cubicTo(300,100,200,200,300,300);
+    path.cubicTo(300,100,200,200,300,300);  // 绘制曲线
     path.cubicTo(100,300,200,200,100,100);
  
     path.setFillRule(rule);
