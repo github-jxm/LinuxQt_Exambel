@@ -24,8 +24,8 @@ protected slots:
     void selectionChanged(const QItemSelection & selected, const QItemSelection & deselected );
     
 protected:
-    QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction,
-                            Qt::KeyboardModifiers modifiers);
+    QModelIndex moveCursor( QAbstractItemView::CursorAction cursorAction,
+                                                    Qt::KeyboardModifiers modifiers);
     int horizontalOffset() const;
     int verticalOffset() const;    
     bool isIndexHidden(const QModelIndex &index) const;
@@ -38,7 +38,6 @@ private:
     QList<QRegion> listRegionM;  
     QList<QRegion> listRegionF; 
     QList<QRegion> listRegionS; 
-    
 };
 
 #endif 

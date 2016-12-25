@@ -49,66 +49,57 @@ void MainWindow::createMenu()
     editMenu->addAction(removeAct);
 }
 
-void MainWindow::slotOpenFile()
+void MainWindow::slotOpenFile()  // 打开文件
 {
     
     name = QFileDialog::getOpenFileName(
-        	this, 
-        	"open file dialog",
-        	".",
-        	"strip files (*.txt)"); 
+                    this,  "open file dialog", ".", "strip files (*.txt)"
+                 );
     
     if (!name.isEmpty())
-    	openFile(name);
+         openFile(name);
 }
 
-void MainWindow::slotSaveFile()
+void MainWindow::slotSaveFile() // 保存到文件
 {
-    if (name.isEmpty())
-    	return;
+    if (name.isEmpty()) return;
     
     QFile file(name);
-    if (!file.open(QFile::WriteOnly))
-         return;
+    if (!file.open(QFile::WriteOnly))  return;
          
     QTextStream ts(&file);
     
-    for(int i=0; i<model->rowCount();i++)
-    {
-    	QModelIndex index = model->index(i);
-    	QString str = model->data(index,Qt::DisplayRole).toString();
-    	ts << str << ",";
+    for(int i=0; i<model->rowCount();i++) {
+            QModelIndex index = model->index(i);
+            QString str = model->data(index,Qt::DisplayRole).toString();
+            ts << str << ",";
     }
 }
 
 void MainWindow::openFile(QString path)
 {
-    if (!path.isEmpty())
-    {
-    	QFile file(path);
+    if (!path.isEmpty()) {
+         QFile file(path);
 
-         if (file.open(QFile::ReadOnly | QFile::Text)) 
-         {
-             QTextStream stream(&file);
-             QString line;
+         if (file.open(QFile::ReadOnly | QFile::Text))  {
+                 QTextStream stream(&file);
+                 QString line;
 
-             model->removeRows(0, model->rowCount(QModelIndex()), QModelIndex());
+                 model->removeRows(0, model->rowCount(QModelIndex()), QModelIndex());
 
-             int pos = 0;
+                 int pos = 0;
 
-             line = stream.readLine();
-             if (!line.isEmpty()) 
-             {
-                 QStringList pieces = line.split(",", QString::SkipEmptyParts);
-                 QString str;
-                 foreach(str,pieces)
-                 {
-              	     model->insertRows(pos, 1, QModelIndex());
-                     model->setData(model->index(pos),str);
-                     pos++;
-                 }                    
-             }
-             file.close();
+                 line = stream.readLine();
+                 if (!line.isEmpty())  {
+                         QStringList pieces = line.split(",", QString::SkipEmptyParts);
+                         QString str;
+                         foreach(str,pieces) {
+                                 model->insertRows(pos, 1, QModelIndex());
+                                 model->setData(model->index(pos),str);
+                                 pos++;
+                         }
+                 }
+                 file.close();
          }
     } 
 }
@@ -117,18 +108,17 @@ void MainWindow::slotInsertRows()
 {
     bool ok;
     QModelIndex index = list->currentIndex();
-    int rows = QInputDialog::getInteger(this,tr("Insert Row Number"),
-    				tr("Please input number:"),1,1,10,1,&ok);
-    if (ok)
-    {
-    	model->insertRows(index.row(),rows,QModelIndex());
+    int rows = QInputDialog::getInteger(
+                this ,tr("Insert Row Number"), tr("Please input number:"),1,1,10,1,&ok
+                                                        );
+    if (ok) {
+            model->insertRows(index.row(),rows,QModelIndex());
     }
 }
 
 void MainWindow::slotRemoveRows()
 {
     QModelIndex index = list->currentIndex();
- 
     model->removeRows(index.row(),1,QModelIndex());
 }
 
