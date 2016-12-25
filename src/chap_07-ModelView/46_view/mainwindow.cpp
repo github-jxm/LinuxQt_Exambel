@@ -19,10 +19,10 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::setupModel()
 {
         model = new QStandardItemModel(4,4,this);
-        model->setHeaderData(0,Qt::Horizontal,tr("department"));
-        model->setHeaderData(1,Qt::Horizontal,tr("male"));
-        model->setHeaderData(2,Qt::Horizontal,tr("female"));
-        model->setHeaderData(3,Qt::Horizontal,tr("retire"));
+        model->setHeaderData(0,Qt::Horizontal,tr("department"));// 部门
+        model->setHeaderData(1,Qt::Horizontal,tr("male"));		// 男
+        model->setHeaderData(2,Qt::Horizontal,tr("female"));	// 女
+        model->setHeaderData(3,Qt::Horizontal,tr("retire")); 	// 退休
 }
 
 void MainWindow::setupView()
@@ -40,9 +40,9 @@ void MainWindow::setupView()
         histogram->setSelectionModel(selectionModel);
 
         connect(selectionModel,SIGNAL(selectionChanged(const QItemSelection, const QItemSelection)),
-                          histogram,SLOT(selectionChanged(const QItemSelection, const QItemSelection)));
+                     histogram,  SLOT(selectionChanged(const QItemSelection, const QItemSelection)));
         connect(selectionModel,SIGNAL(selectionChanged(const QItemSelection, const QItemSelection)),
-                          table,SLOT(selectionChanged(const QItemSelection, const QItemSelection)));
+                         table,  SLOT(selectionChanged(const QItemSelection, const QItemSelection)));
 
         splitter->addWidget(table);
         splitter->addWidget(histogram);
@@ -65,7 +65,7 @@ void MainWindow::slotOpenFile()
         name = QFileDialog::getOpenFileName(
                 this,
                 "open file dialog",
-                "/",
+                "./",
                 "histogram files (*.strip)");
 
         if (!name.isEmpty()) {
@@ -76,33 +76,32 @@ void MainWindow::slotOpenFile()
 void MainWindow::openFile(QString path)
 {
     if (!path.isEmpty()) {
-          QFile file(path);
-         if (file.open(QFile::ReadOnly | QFile::Text))  {
-                     QTextStream stream(&file);
-                     QString line;
+         QFile file(path);
+         if (file.open(QFile::ReadOnly | QFile::Text)){
+             QTextStream stream(&file);
+             QString line;
 
-                     model->removeRows(0, model->rowCount(QModelIndex()), QModelIndex());
+             model->removeRows(0, model->rowCount(QModelIndex()), QModelIndex());
 
-                     int row = 0;
-                     do {
-                             line = stream.readLine();
-                             if (!line.isEmpty()) {
-                                     model->insertRows(row, 1, QModelIndex());
+             int row = 0;
+             do {
 
-                                     QStringList pieces = line.split(",", QString::SkipEmptyParts);
-                                     model->setData(model->index(row, 0, QModelIndex()),
-                                                    pieces.value(0));
-                                     model->setData(model->index(row, 1, QModelIndex()),
-                                                    pieces.value(1));
-                                     model->setData(model->index(row, 2, QModelIndex()),
-                                                    pieces.value(2));
-                                     model->setData(model->index(row,3, QModelIndex()),
-                                                    pieces.value(3));
-                                     row++;
-                             }
-                     } while (!line.isEmpty());
+                 line = stream.readLine();
 
-                     file.close();
+                 if (!line.isEmpty()) {
+                     model->insertRows(row, 1, QModelIndex());
+
+                     QStringList pieces = line.split(",", QString::SkipEmptyParts);
+                     model->setData(model->index(row,0,QModelIndex()), pieces.value(0));
+                     model->setData(model->index(row,1,QModelIndex()), pieces.value(1));
+                     model->setData(model->index(row,2,QModelIndex()), pieces.value(2));
+                     model->setData(model->index(row,3,QModelIndex()), pieces.value(3));
+                     row++;
+                 }
+
+             } while (!line.isEmpty());
+
+             file.close();
          }
     } 
 }
